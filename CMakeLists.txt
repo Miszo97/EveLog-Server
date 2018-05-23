@@ -7,6 +7,7 @@ set (CMAKE_CXX_FLAGS "-Ddebug_cerr -lprotobuf")
 
 set(CMAKE_AUTOMOC ON)
 
+include_directories(/usr/local/boost_1_67_0/)
 
 
 find_package(Qt5Widgets REQUIRED)
@@ -16,6 +17,9 @@ find_package(Qt5Network REQUIRED)
 
 
 
-add_executable(Server main.cpp Server.cpp Server.hpp)
+add_executable(Server main.cpp Server.cpp Server.hpp Request_Response.pb.cc)
+add_executable(tests tests.cpp Server.cpp Server.hpp Request_Response.pb.cc)
 
 target_link_libraries(Server  Qt5::Widgets Qt5::Core Qt5::Sql Qt5::Network)
+target_link_libraries(tests Qt5::Widgets Qt5::Core Qt5::Sql Qt5::Network)
+
