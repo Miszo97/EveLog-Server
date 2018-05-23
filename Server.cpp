@@ -114,8 +114,26 @@ void Server::onNewConnection() {
 
     //if new data will arrive from the new connection to the server(tcp socket) it's appropriate handled by Server::handleIncomingData function.
     connect(newConnection, &QIODevice::readyRead, [this, newConnection](){ Server::handleIncomingData(newConnection); });
+    //delete this connection from list if it disconnects.
+    connect(newConnection, &QAbstractSocket::disconnected, [this, newConnection](){ Server::deleteConnectionFromList(newConnection); });
+
+
 
     //store new connection for future.
     connections.push_back(newConnection);
 
+
+    handling_connections = true;
+
+}
+
+int Server::connections_count() noexcept {
+    return connections.size();
+}
+
+void Server::deleteConnectionFromList(QTcpSocket* sck_to_delete) {
+
+    connections.removeOne(sck_to_delete);
+    if(connections.empty())
+        handling_connections = false;
 }

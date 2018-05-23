@@ -22,6 +22,8 @@ class Server : public QObject
 
 public:
      Server();
+    int connections_count() noexcept ;
+    bool handling_connections;
 
 private slots:
     void handleIncomingData(QTcpSocket*);
@@ -29,6 +31,7 @@ private slots:
     void sendEvents();
     void sendEvent();
     void onNewConnection();
+    void deleteConnectionFromList(QTcpSocket*);
 
 private:
 
