@@ -7,10 +7,14 @@
 
 #include <QObject>
 #include <QString>
+#include <QDataStream>
 #include <QVector>
+#include <QTcpSocket>
+#include <QTcpServer>
+#include <QNetworkSession>
+#include <QSignalMapper>
+#include "Request_Response.pb.h"
 
-class QTcpServer;
-class QNetworkSession;
 
 class Server : public QObject
 {
@@ -20,14 +24,21 @@ public:
      Server();
 
 private slots:
+    void handleIncomingData(QTcpSocket*);
     void sessionOpened();
     void sendEvents();
     void sendEvent();
+    void onNewConnection();
 
 private:
+
+    QList<QTcpSocket*> connections; /*!< Each new client connection is referred as socket and stored in this list.*/
+    std::vector<rrepro::Event> events; /*!< This container contains all events fetched from DB and is updated whenever new event arrives.*/
     QTcpServer *tcpServer = nullptr;
-    QVector<QString> fortunes; //TODO fetched events from DB?
     QNetworkSession *networkSession = nullptr;
+    QDataStream input;
+    QSignalMapper* signalMapper;
+
 };
 
 
