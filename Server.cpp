@@ -64,13 +64,33 @@ void Server::sessionOpened() {
 }
 
 
-void Server::sendEvents() {
+void Server::sendEvents(QTcpSocket* peer) {
+
+    rrepro::Response response;
+    rrepro::Event ev;
+
+    for (auto&& ev : events) {
+        auto event = response.add_events();
+        *event = ev;
+    }
+
+    std::string string = response.SerializeAsString();
+
+
+    peer->write(string.c_str());
 
 }
+void Server::sendEvent(QTcpSocket* peer, rrepro::Event event) {
 
-void Server::sendEvent() {
+    rrepro::Response response;
+    auto ev = response.add_events();
+    *ev = event;
 
+    std::string string = response.SerializeAsString();
+
+    peer->write(string.c_str());
 }
+
 
 void Server::handleIncomingData(QTcpSocket* peer) {
 
@@ -81,12 +101,14 @@ void Server::handleIncomingData(QTcpSocket* peer) {
 
     std::cout << std::boolalpha;
 
+#ifdef debug_cerr
     std::cout << "request.has_event() = " << request.has_event() << std::endl;
     std::cout << "request.kind() = " << request.kind() << std::endl;
     if (request.has_event()) {
         std::cout << "request.event().has_text()" << request.event().has_text() << std::endl;
         std::cout << "request.event().text()" << request.event().text() << std::endl;
     }
+#endif
 
     if(request.kind() == rrepro::Request::GET)
     {
@@ -95,19 +117,27 @@ void Server::handleIncomingData(QTcpSocket* peer) {
     }
     if(request.kind() == rrepro::Request::ADD)
     {
+
         std::cout<< "Request kind is ADD" <<std::endl;
         //add new event and sent do others
         events.push_back(std::move(request.event()));
-        for (auto&& peer : connections) {
-            peer->write(input);
+        for (auto&& other_peer : connections) {
+            if (other_peer->socketDescriptor() != peer->socketDescriptor()) {
+                sendEvent(peer, request.event());
+            }
         }
     }
 
 
 }
 
+/*!
+ *  This slot is called when &QTcpServer::newConnection signal is emitted.
+ */
 void Server::onNewConnection() {
 
+    
+    std::cout<< "new connection" <<std::endl;
     //get new connection
     QTcpSocket* newConnection = tcpServer->nextPendingConnection();
 
@@ -119,9 +149,9 @@ void Server::onNewConnection() {
 
 #ifdef debug_cerr
     //if state of the socket changes, print it's current state with Server::displayState.
-    connect(newConnection, &QIODevice::readyRead, [this, newConnection](){ Server::displayState(newConnection);  });
+    connect(newConnection, &QAbstractSocket::stateChanged, [this, newConnection](){ Server::displayState(newConnection);  });
     //if an error with the socket occurred print it with Server::displayError.
-    connect(newConnection , &QIODevice::readyRead, [this, newConnection](){ Server::displayError(newConnection);  });
+    connect(newConnection , QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::error), [this, newConnection](){ Server::displayError(newConnection);  });
 #endif
 
 
@@ -138,6 +168,12 @@ int Server::connections_count() noexcept {
     return connections.size();
 }
 
+/*!
+ * This function will remove the given tcp socket from Server's list Connections.
+ * If debug_cerr macro is defined it will print the name of the socket.
+ * If it's the last socket from the list handling_connection flag will be set to false.
+ * @param sck_to_delete QTcpSocket which will be removed from list.
+ */
 void Server::deleteConnectionFromList(QTcpSocket* sck_to_delete) {
 
     qInfo()<<"The following socket has just disconnected."<<sck_to_delete->peerName();
@@ -145,9 +181,13 @@ void Server::deleteConnectionFromList(QTcpSocket* sck_to_delete) {
     if(connections.empty())
         handling_connections = false;
 }
-
+/*!
+ * Auxiliary function to displays possible errors affecting given tcp socket.
+ * This function uses QAbstractSocket::SocketError enum class to identify error which affected
+ * the tcp socket. Displaying information about a problem is handled by qDebug() object.
+ *
+ */
 void Server::displayError(QTcpSocket* socket) {
-
 
     auto socketError = socket->error();
 
@@ -165,41 +205,51 @@ void Server::displayError(QTcpSocket* socket) {
                       "settings are correct.";
             break;
         default:
-            qDebug() << "Error occurred!" << std::endl;
+            qDebug() << "Error occurred! "<< socketError;
 
     }
 
 }
+
+/*!
+ * Auxiliary function to displays all possible states in which a given tcp socket is.
+ * This function uses QAbstractSocket::SocketState enum class to identify error which affected
+ * the tcp socket. Displaying information about the current state is handled by qInfo() object.
+ *
+ */
 void Server::displayState(QTcpSocket* socket) {
 
     auto socketState = socket->state();
 
     switch (socketState) {
         case QAbstractSocket::UnconnectedState    :
-            std::cout << "The socket is not connected." << std::endl;
+            qInfo() << "The socket is not connected.";
             break;
         case QAbstractSocket::HostLookupState    :
-            std::cout << "The socket is performing a host name lookup." << std::endl;
+            qInfo() << "The socket is performing a host name lookup.";
             break;
         case QAbstractSocket::ConnectingState:
-            std::cout << "The socket has started establishing a connection." << std::endl;
+            qInfo() << "The socket has started establishing a connection.";
             break;
         case QAbstractSocket::ConnectedState:
-            std::cout << "A connection is established." << std::endl;
+            qInfo() << "A connection is established.";
             break;
         case QAbstractSocket::BoundState    :
-            std::cout << "The socket is bound to an address and port." << std::endl;
+            qInfo() << "The socket is bound to an address and port.";
             break;
         case QAbstractSocket::ClosingState        :
-            std::cout << "The socket is about to close (data may still be waiting to be written)." << std::endl;
+            qInfo() << "The socket is about to close (data may still be waiting to be written).";
             break;
         case QAbstractSocket::ListeningState    :
-            std::cout << "For internal use only." << std::endl;
+            qInfo() << "For internal use only.";
             break;
         default:;
     }
 
 
+
+}
+Server::~Server() {
 
 }
 
