@@ -28,10 +28,13 @@ public:
 private slots:
     void handleIncomingData(QTcpSocket*);
     void sessionOpened();
-    void sendEvents();
+    void sendEvents(QTcpSocket*);
     void sendEvent();
     void onNewConnection();
     void deleteConnectionFromList(QTcpSocket*);
+
+    void displayError(QTcpSocket* );
+    void displayState(QTcpSocket* );
 
 private:
 

@@ -34,7 +34,6 @@ Server::Server() {
         sessionOpened();
     }
 
-    signalMapper = new QSignalMapper(this);
 
     connect(tcpServer, &QTcpServer::newConnection, this, &Server::onNewConnection);
 }
@@ -73,10 +72,10 @@ void Server::sendEvent() {
 
 }
 
-void Server::handleIncomingData(QTcpSocket* newSocket) {
+void Server::handleIncomingData(QTcpSocket* peer) {
 
     QByteArray input;
-    input = newSocket->readAll();
+    input = peer->readAll();
     rrepro::Request request;
     request.ParseFromArray(input, input.size());
 
@@ -92,7 +91,7 @@ void Server::handleIncomingData(QTcpSocket* newSocket) {
     if(request.kind() == rrepro::Request::GET)
     {
         std::cout<< "Request kind is GET" <<std::endl;
-        sendEvents();
+        sendEvents(peer);
     }
     if(request.kind() == rrepro::Request::ADD)
     {
@@ -118,6 +117,14 @@ void Server::onNewConnection() {
     connect(newConnection, &QAbstractSocket::disconnected, [this, newConnection](){ Server::deleteConnectionFromList(newConnection); });
 
 
+#ifdef debug_cerr
+    //if state of the socket changes, print it's current state with Server::displayState.
+    connect(newConnection, &QIODevice::readyRead, [this, newConnection](){ Server::displayState(newConnection);  });
+    //if an error with the socket occurred print it with Server::displayError.
+    connect(newConnection , &QIODevice::readyRead, [this, newConnection](){ Server::displayError(newConnection);  });
+#endif
+
+
 
     //store new connection for future.
     connections.push_back(newConnection);
@@ -133,7 +140,66 @@ int Server::connections_count() noexcept {
 
 void Server::deleteConnectionFromList(QTcpSocket* sck_to_delete) {
 
+    qInfo()<<"The following socket has just disconnected."<<sck_to_delete->peerName();
     connections.removeOne(sck_to_delete);
     if(connections.empty())
         handling_connections = false;
 }
+
+void Server::displayError(QTcpSocket* socket) {
+
+
+    auto socketError = socket->error();
+
+
+    switch (socketError) {
+        case QAbstractSocket::RemoteHostClosedError:
+            break;
+        case QAbstractSocket::HostNotFoundError:
+            qDebug()<<"HostNotFoundError, check host name and port settings.";
+            break;
+        case QAbstractSocket::ConnectionRefusedError:
+            qDebug()<<"The connection was refused by the peer. "
+                      "Make sure the Events server is running, "
+                      "and check that the host name and port "
+                      "settings are correct.";
+            break;
+        default:
+            qDebug() << "Error occurred!" << std::endl;
+
+    }
+
+}
+void Server::displayState(QTcpSocket* socket) {
+
+    auto socketState = socket->state();
+
+    switch (socketState) {
+        case QAbstractSocket::UnconnectedState    :
+            std::cout << "The socket is not connected." << std::endl;
+            break;
+        case QAbstractSocket::HostLookupState    :
+            std::cout << "The socket is performing a host name lookup." << std::endl;
+            break;
+        case QAbstractSocket::ConnectingState:
+            std::cout << "The socket has started establishing a connection." << std::endl;
+            break;
+        case QAbstractSocket::ConnectedState:
+            std::cout << "A connection is established." << std::endl;
+            break;
+        case QAbstractSocket::BoundState    :
+            std::cout << "The socket is bound to an address and port." << std::endl;
+            break;
+        case QAbstractSocket::ClosingState        :
+            std::cout << "The socket is about to close (data may still be waiting to be written)." << std::endl;
+            break;
+        case QAbstractSocket::ListeningState    :
+            std::cout << "For internal use only." << std::endl;
+            break;
+        default:;
+    }
+
+
+
+}
+
