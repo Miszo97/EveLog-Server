@@ -11,6 +11,7 @@
 #include <QVector>
 #include <QTcpSocket>
 #include <QTcpServer>
+#include <QSqlDatabase>
 #include <QNetworkSession>
 #include <QSignalMapper>
 #include "Request_Response.pb.h"
@@ -25,8 +26,33 @@ public:
     Server();
     /// \brief Destroy the Server instance.
     virtual ~Server();
-    int connections_count() noexcept ;
-    bool handling_connections;
+
+    /// \brief Return the current amount of connected hosts.
+    size_t connections_count() noexcept ;
+
+    /// \brief Return the true if Server is connected to Database otherwise return false.
+    bool connected_to_database() noexcept;
+
+    /// \brief Return true if Sever is handling any connections(sessions) otherwise return false.
+    bool is_handling_connections();
+
+    /// \brief Return the current amount of residing events fetched from DB and updated with each ADD request.
+    int event_number();
+
+    /// \brief Send particular event to a given socket.
+    void sendEvent(QTcpSocket*, rrepro::Event event);
+
+    /// \brief Add given event to Database that Sever is connected with.
+    /// \param event Event to be added.
+    void addEventToDB(rrepro::Event event);
+
+    /// \brief Fetch all events from database and put them to passed std::vector<rrepro::Event>.
+    /// \param vec Vector to which all events from database should be put.
+    void fetchAllEventsFromDBToVector(std::vector<rrepro::Event>& vec);
+
+    /// \brief This function will remove the given tcp socket from Server's list Connections.
+    void deleteConnectionFromList(QTcpSocket*);
+
 
 private slots:
 
@@ -37,15 +63,17 @@ private slots:
     /// \brief Send events from connections list to a given socket.
     void sendEvents(QTcpSocket*);
 
-    /// \brief Send particular event to a given socket.
-    void sendEvent(QTcpSocket*, rrepro::Event event);
 
     /// \brief This slot is called when &QTcpServer::newConnection signal is emitted.
     /// It prepares new socket and store in connections list.
     void onNewConnection();
 
-    /// /brief This function will remove the given tcp socket from Server's list Connections.
-    void deleteConnectionFromList(QTcpSocket*);
+
+    /// \brief This function slot will invoke Server::deleteConnectionFromList function which
+    /// remove the passed tcp socket from Server's list Connections.
+    void onDeleteConnectionFromList(QTcpSocket*);
+
+
 
     /*!
      * /brief Auxilary function to display possible errors affecting given tcp socket.
@@ -56,6 +84,7 @@ private slots:
      */
     void displayState(QTcpSocket* );
 
+
 private:
 
     QList<QTcpSocket*> connections; /*!< Each new client connection is referred as socket and stored in this list.*/
@@ -63,6 +92,11 @@ private:
     QTcpServer *tcpServer = nullptr;
     QNetworkSession *networkSession = nullptr;
     QDataStream input;
+    QSqlDatabase db_connection;
+    bool handling_connections;
+
+    void initDB();
+    void setUpNetConf();
 
 };
 

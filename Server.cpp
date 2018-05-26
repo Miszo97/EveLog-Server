@@ -6,37 +6,29 @@
 #include <QtNetwork>
 #include <QtCore>
 #include <iostream>
-
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
 #include "Server.hpp"
+#include <QSqlError>
 #include "Request_Response.pb.h"
 
 Server::Server() {
 
-    QNetworkConfigurationManager manager;
-    if (manager.capabilities() & QNetworkConfigurationManager::NetworkSessionRequired) {
-        // Get saved network configuration
-        QSettings settings(QSettings::UserScope, QLatin1String("QtProject"));
-        settings.beginGroup(QLatin1String("QtNetwork"));
-        const QString id = settings.value(QLatin1String("DefaultNetworkConfiguration")).toString();
-        settings.endGroup();
+    initDB();
+    fetchAllEventsFromDBToVector(events);
 
-        // If the saved network configuration is not currently discovered use the system default
-        QNetworkConfiguration config = manager.configurationFromIdentifier(id);
-        if ((config.state() & QNetworkConfiguration::Discovered) != QNetworkConfiguration::Discovered) {
-            config = manager.defaultConfiguration();
-        }
+    std::cout << "events[0].text() returns" << events[0].text() << std::endl;
 
-        networkSession = new QNetworkSession(config, this);
-        connect(networkSession, &QNetworkSession::opened, this, &Server::sessionOpened);
 
-        networkSession->open();
-    } else {
-        sessionOpened();
-    }
+    //std::cout << "query.lastError() returns" << query.lastError() << std::endl;
+
+
+    setUpNetConf();
 
 
     connect(tcpServer, &QTcpServer::newConnection, this, &Server::onNewConnection);
 }
+
 
 void Server::sessionOpened() {
 
@@ -119,6 +111,7 @@ void Server::handleIncomingData(QTcpSocket* peer) {
     {
 
         std::cout<< "Request kind is ADD" <<std::endl;
+        addEventToDB(request.event());
         //add new event and sent do others
         events.push_back(std::move(request.event()));
         for (auto&& other_peer : connections) {
@@ -144,7 +137,7 @@ void Server::onNewConnection() {
     //if new data will arrive from the new connection to the server(tcp socket) it's appropriate handled by Server::handleIncomingData function.
     connect(newConnection, &QIODevice::readyRead, [this, newConnection](){ Server::handleIncomingData(newConnection); });
     //delete this connection from list if it disconnects.
-    connect(newConnection, &QAbstractSocket::disconnected, [this, newConnection](){ Server::deleteConnectionFromList(newConnection); });
+    connect(newConnection, &QAbstractSocket::disconnected, [this, newConnection](){ Server::onDeleteConnectionFromList(newConnection); });
 
 
 #ifdef debug_cerr
@@ -164,7 +157,7 @@ void Server::onNewConnection() {
 
 }
 
-int Server::connections_count() noexcept {
+size_t Server::connections_count() noexcept {
     return connections.size();
 }
 
@@ -252,4 +245,103 @@ void Server::displayState(QTcpSocket* socket) {
 Server::~Server() {
 
 }
+void Server::setUpNetConf() {
+
+    QNetworkConfigurationManager manager;
+    if (manager.capabilities() & QNetworkConfigurationManager::NetworkSessionRequired) {
+        // Get saved network configuration
+        QSettings settings(QSettings::UserScope, QLatin1String("QtProject"));
+        settings.beginGroup(QLatin1String("QtNetwork"));
+        const QString id = settings.value(QLatin1String("DefaultNetworkConfiguration")).toString();
+        settings.endGroup();
+
+        // If the saved network configuration is not currently discovered use the system default
+        QNetworkConfiguration config = manager.configurationFromIdentifier(id);
+        if ((config.state() & QNetworkConfiguration::Discovered) != QNetworkConfiguration::Discovered) {
+            config = manager.defaultConfiguration();
+        }
+
+        networkSession = new QNetworkSession(config, this);
+        connect(networkSession, &QNetworkSession::opened, this, &Server::sessionOpened);
+
+        networkSession->open();
+    } else {
+        sessionOpened();
+    }
+
+}
+
+bool Server::is_handling_connections() {
+
+    return handling_connections;
+}
+bool Server::connected_to_database() noexcept {
+    return db_connection.isOpen();
+}
+void Server::initDB() {
+
+    db_connection = QSqlDatabase::addDatabase("QSQLITE");
+    db_connection.setHostName("host_name");
+    db_connection.setDatabaseName("events_db");
+    db_connection.setUserName("user");
+    db_connection.setPassword("password");
+    bool ok = db_connection.open();
+
+
+
+    if (!ok) {
+        std::cerr<< "Could not open a connection to Database";
+    } else {
+        std::cout<< "Connection to server was established" << std::endl;
+    }
+
+    QSqlQuery query;
+    query.exec("CREATE TABLE Events(id UNIQUE, event TEXT, timestamp TEXT, priority INT)");
+
+}
+void Server::addEventToDB(rrepro::Event event) {
+
+    QSqlQuery query;
+
+    std::string name = event.text();
+    std::string timestamp = std::to_string(event.timestamp());
+    std::string q = "INSERT INTO Events (event, timestamp, priority) "
+                    "VALUES ("+name+", "+timestamp+", 1)";
+
+    query.exec(QString::fromStdString(q));
+
+    qInfo() << "query.lastError().databaseText() returns" << query.lastError().databaseText();
+
+}
+void Server::fetchAllEventsFromDBToVector(std::vector<rrepro::Event>& vec) {
+
+    QSqlQuery query;
+    query.exec("SELECT * FROM Events");
+    qInfo() << "query.lastError().databaseText() returns" << query.lastError().databaseText();
+
+    while (query.next()) {
+        QString name = query.value(0).toString();
+        QString timestamp = query.value(1).toString();
+        int priority = query.value(2).toInt();
+        qDebug() << name << timestamp << priority;
+        rrepro::Event event;
+        event.set_text(name.toStdString());
+        event.set_timestamp(timestamp.toInt());
+        vec.push_back(event);
+    }
+
+
+
+
+}
+int Server::event_number() {
+
+    return events.size();
+}
+
+void Server::onDeleteConnectionFromList(QTcpSocket* socket) {
+
+    deleteConnectionFromList(socket);
+}
+
 
