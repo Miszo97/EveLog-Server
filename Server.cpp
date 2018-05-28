@@ -12,7 +12,8 @@
 #include <QSqlError>
 #include "Request_Response.pb.h"
 
-Server::Server() {
+Server::Server() : handling_connections(false)
+{
 
     initDB();
     fetchAllEventsFromDBToVector(events);
@@ -20,7 +21,6 @@ Server::Server() {
     std::cout << "events[0].text() returns" << events[0].text() << std::endl;
 
 
-    //std::cout << "query.lastError() returns" << query.lastError() << std::endl;
 
 
     setUpNetConf();
@@ -63,10 +63,32 @@ void Server::sendEvents(QTcpSocket* peer) {
 
     for (auto&& ev : events) {
         auto event = response.add_events();
+        ev.clear_timestamp();
         *event = ev;
     }
 
+    std::cout<<"The following messages will be sent before serialization: "<<std::endl;
+    for (auto&& item : response.events()) {
+        std::cout << "Item text: " << item.text()<<std::endl;
+        std::cout << "Item timestamp: " << item.timestamp()<<std::endl;
+        //priority
+    }
+
+    std::cout<<"Serializing a data..."<<std::endl;
+
     std::string string = response.SerializeAsString();
+
+    std::cout<< "Serialized data is string that has " <<string.size()<<" chars"<<std::endl;
+    std::cout<< "It's output is: "<< string <<std::endl;
+    std::cout<<"\n";
+
+    std::cout<< "c_str about to write is: "<<string.c_str()<<std::endl;
+
+    std::cout<< "string.data() is: " <<string.data()<<std::endl;
+
+    std::cout<<"\n";
+
+    std::cout<< "Writing..." <<std::endl;
 
 
     peer->write(string.c_str());
@@ -93,7 +115,7 @@ void Server::handleIncomingData(QTcpSocket* peer) {
 
     std::cout << std::boolalpha;
 
-#ifdef debug_cerr
+#ifdef DEBUG_MODE
     std::cout << "request.has_event() = " << request.has_event() << std::endl;
     std::cout << "request.kind() = " << request.kind() << std::endl;
     if (request.has_event()) {
@@ -140,7 +162,7 @@ void Server::onNewConnection() {
     connect(newConnection, &QAbstractSocket::disconnected, [this, newConnection](){ Server::onDeleteConnectionFromList(newConnection); });
 
 
-#ifdef debug_cerr
+#ifdef DEBUG_MODE
     //if state of the socket changes, print it's current state with Server::displayState.
     connect(newConnection, &QAbstractSocket::stateChanged, [this, newConnection](){ Server::displayState(newConnection);  });
     //if an error with the socket occurred print it with Server::displayError.
@@ -163,7 +185,7 @@ size_t Server::connections_count() noexcept {
 
 /*!
  * This function will remove the given tcp socket from Server's list Connections.
- * If debug_cerr macro is defined it will print the name of the socket.
+ * If DEBUG_MODE macro is defined it will print the name of the socket.
  * If it's the last socket from the list handling_connection flag will be set to false.
  * @param sck_to_delete QTcpSocket which will be removed from list.
  */
@@ -206,7 +228,7 @@ void Server::displayError(QTcpSocket* socket) {
 
 /*!
  * Auxiliary function to displays all possible states in which a given tcp socket is.
- * This function uses QAbstractSocket::SocketState enum class to identify error which affected
+ * This function uses QAbstractSocket::SocketState enum class to identify state which affected
  * the tcp socket. Displaying information about the current state is handled by qInfo() object.
  *
  */
@@ -278,6 +300,14 @@ bool Server::is_handling_connections() {
 bool Server::connected_to_database() noexcept {
     return db_connection.isOpen();
 }
+
+/*!
+ * \brief This function tries to make a connection with Database and create a table.
+ * Firstly it tries to make a connection with data base "events_db". It sets a database driver to QSQLITE
+ * which supports sqlite3 database. It sets host name, username and password.
+ * When the connection is open it creates table Events which will store unique id, text, priority and timestamp.
+ *
+ */
 void Server::initDB() {
 
     db_connection = QSqlDatabase::addDatabase("QSQLITE");
@@ -299,16 +329,22 @@ void Server::initDB() {
     query.exec("CREATE TABLE Events(id UNIQUE, event TEXT, timestamp TEXT, priority INT)");
 
 }
+
+/// \brief Add given event to Database that Sever is connected with.
+/// This function will try add a passed event to DB. It parses the event
+/// so it can fetch it's components which will be inserted to table later on.
+/// \note If DEBUG_MODE macro is defined it also prints possible query error.
+/// \param event Event to be added.
 void Server::addEventToDB(rrepro::Event event) {
 
     QSqlQuery query;
 
-    std::string name = event.text();
-    std::string timestamp = std::to_string(event.timestamp());
-    std::string q = "INSERT INTO Events (event, timestamp, priority) "
-                    "VALUES ("+name+", "+timestamp+", 1)";
+    std::string name = "'"+event.text()+"'";
+    std::string timestamp = "'"+std::to_string(event.timestamp())+"'";
+    std::string q = "INSERT INTO Events (event, timestamp, priority) VALUES ("+name+", "+timestamp+", 1)";
 
-    query.exec(QString::fromStdString(q));
+    const QString& final_query = QString::fromStdString(q);
+    query.exec(final_query);
 
     qInfo() << "query.lastError().databaseText() returns" << query.lastError().databaseText();
 
@@ -317,16 +353,21 @@ void Server::fetchAllEventsFromDBToVector(std::vector<rrepro::Event>& vec) {
 
     QSqlQuery query;
     query.exec("SELECT * FROM Events");
+
+#ifdef DEBUG_MODE
     qInfo() << "query.lastError().databaseText() returns" << query.lastError().databaseText();
+    qInfo()<< "Query size is: "<<query.size();
+#endif
+
+
 
     while (query.next()) {
         QString name = query.value(0).toString();
         QString timestamp = query.value(1).toString();
         int priority = query.value(2).toInt();
-        qDebug() << name << timestamp << priority;
+        qDebug() << name << priority;
         rrepro::Event event;
         event.set_text(name.toStdString());
-        event.set_timestamp(timestamp.toInt());
         vec.push_back(event);
     }
 

@@ -20,16 +20,6 @@ BOOST_AUTO_TEST_CASE( initial_state )
 BOOST_AUTO_TEST_CASE( test )
 {
 
-  int argc{};
-  QCoreApplication app(argc, nullptr);
-  Server server;
-  app.exec();
-
-
-
-
-
-
 }
 
 

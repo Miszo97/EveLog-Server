@@ -53,6 +53,9 @@ public:
     /// \brief This function will remove the given tcp socket from Server's list Connections.
     void deleteConnectionFromList(QTcpSocket*);
 
+    /// \brief This function tries to make a connection with Database and create a table.
+    void initDB();
+
 
 private slots:
 
@@ -76,11 +79,11 @@ private slots:
 
 
     /*!
-     * /brief Auxilary function to display possible errors affecting given tcp socket.
+     * /brief Auxiliary function to display possible errors affecting given tcp socket.
      */
     void displayError(QTcpSocket* );
     /*!
-     * /brief Auxilary function to display states in which tcpSocket can be.
+     * /brief Auxiliary function to display states in which tcpSocket can be.
      */
     void displayState(QTcpSocket* );
 
@@ -91,11 +94,10 @@ private:
     std::vector<rrepro::Event> events; /*!< This container contains all events fetched from DB and is updated whenever new event arrives.*/
     QTcpServer *tcpServer = nullptr;
     QNetworkSession *networkSession = nullptr;
-    QDataStream input;
     QSqlDatabase db_connection;
     bool handling_connections;
 
-    void initDB();
+
     void setUpNetConf();
 
 };
