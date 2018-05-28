@@ -113,9 +113,10 @@ void Server::handleIncomingData(QTcpSocket* peer) {
     rrepro::Request request;
     request.ParseFromArray(input, input.size());
 
-    std::cout << std::boolalpha;
 
 #ifdef DEBUG_MODE
+    std::cout << std::boolalpha;
+
     std::cout << "request.has_event() = " << request.has_event() << std::endl;
     std::cout << "request.kind() = " << request.kind() << std::endl;
     if (request.has_event()) {
@@ -138,7 +139,7 @@ void Server::handleIncomingData(QTcpSocket* peer) {
         events.push_back(std::move(request.event()));
         for (auto&& other_peer : connections) {
             if (other_peer->socketDescriptor() != peer->socketDescriptor()) {
-                sendEvent(peer, request.event());
+                sendEvent(other_peer, request.event());
             }
         }
     }
