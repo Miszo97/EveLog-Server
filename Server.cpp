@@ -294,13 +294,18 @@ void Server::setUpNetConf() {
 
 }
 
-bool Server::is_handling_connections() {
+/*!
+ * Returns true if the Server is connected with at least one peer.
+ * If it's not, it returns false.
+ *
+ */
+bool Server::is_handling_connections() { return handling_connections; }
 
-    return handling_connections;
-}
-bool Server::connected_to_database() noexcept {
-    return db_connection.isOpen();
-}
+/*!
+ * Returns true if the Server is connected to the database.
+ * If it's not, it returns false.
+ */
+bool Server::connected_to_database() noexcept { return db_connection.isOpen(); }
 
 /*!
  * \brief This function tries to make a connection with Database and create a table.
@@ -320,11 +325,12 @@ void Server::initDB() {
 
 
 
-    if (!ok) {
+    if (!ok)
         std::cerr<< "Could not open a connection to Database";
-    } else {
-        std::cout<< "Connection to server was established" << std::endl;
-    }
+    else
+        std::cout<< "Connection to a database was established" << std::endl;
+
+
 
     QSqlQuery query;
     query.exec("CREATE TABLE Events(id UNIQUE, event TEXT, timestamp TEXT, priority INT)");
@@ -350,6 +356,11 @@ void Server::addEventToDB(rrepro::Event event) {
     qInfo() << "query.lastError().databaseText() returns" << query.lastError().databaseText();
 
 }
+
+/*!
+ * \brief This function fetches all events from the database and populates the passaed vector with the.
+ * @param vec Container (std::vector) which should be filled with events from databse.
+ */
 void Server::fetchAllEventsFromDBToVector(std::vector<rrepro::Event>& vec) {
 
     QSqlQuery query;
@@ -376,14 +387,16 @@ void Server::fetchAllEventsFromDBToVector(std::vector<rrepro::Event>& vec) {
 
 
 }
+
+/*!
+ * \brief This function returns underlaying events counter.
+ * @return Amount of events.
+ */
 int Server::event_number() {
 
     return events.size();
 }
 
-void Server::onDeleteConnectionFromList(QTcpSocket* socket) {
-
-    deleteConnectionFromList(socket);
-}
+void Server::onDeleteConnectionFromList(QTcpSocket* socket) { deleteConnectionFromList(socket); }
 
 
