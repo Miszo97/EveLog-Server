@@ -32,6 +32,7 @@ if (Boost_FOUND)
 
     include_directories(${Boost_INCLUDE_DIRS})
     target_link_libraries(placebo ${Boost_LIBRARIES})
+    target_link_libraries(Server ${Boost_LIBRARIES})
     
 else()
     message(FATAL_ERROR "Boost was not found!")

@@ -2,6 +2,8 @@
 // Created by Artur Spek on 20/05/2018.
 //
 
+#define BOOST_LOG_DYN_LINK 1
+
 #include <QtWidgets>
 #include <QtNetwork>
 #include <QtCore>
@@ -11,10 +13,19 @@
 #include "Server.hpp"
 #include <QSqlError>
 #include "Request_Response.pb.h"
+#include <boost/log/core.hpp>
+#include <boost/log/trivial.hpp>
+#include <boost/log/expressions.hpp>
+#include <boost/log/sinks/text_file_backend.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+#include <boost/log/sources/severity_logger.hpp>
+#include <boost/log/sources/record_ostream.hpp>
 
 Server::Server() : handling_connections(false)
 {
 
+    boost::log::add_file_log("logs.log");
     initDB();
     fetchAllEventsFromDBToVector(events);
 
@@ -92,6 +103,8 @@ void Server::sendEvents(QTcpSocket* peer) {
 
 
     peer->write(string.c_str());
+
+    BOOST_LOG_TRIVIAL(info) << "Writing data to peer" << peer->peerName().toStdString();
 
 }
 void Server::sendEvent(QTcpSocket* peer, rrepro::Event event) {
