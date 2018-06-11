@@ -1,3 +1,5 @@
 cmake-build-debug/
+*.pb.cc
+*.pb.h
 Client.cpp
 Client.hpp
