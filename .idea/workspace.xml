@@ -3,8 +3,6 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
       <config projectName="Server" targetName="Server" />
-      <config projectName="Server" targetName="placebo_autogen" />
-      <config projectName="Server" targetName="placebo" />
       <config projectName="Server" targetName="Server_autogen" />
     </generated>
   </component>
@@ -14,11 +12,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c471e11-340c-4955-ad00-c6496ce2e3f1" name="Default" comment="README.md update.">
+    <list default="true" id="7c471e11-340c-4955-ad00-c6496ce2e3f1" name="Default" comment="Add simple logs.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,15 +34,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Client.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Client.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
@@ -59,22 +49,21 @@
       <file leaf-file-name="Server.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1305">
-              <caret line="87" column="50" lean-forward="true" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
+            <state relative-caret-position="375">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#0#2#0" />
-                <element signature="e#47#67#0" expanded="true" />
-                <element signature="e#261#574#0" expanded="true" />
-                <element signature="e#577#1416#0" expanded="true" />
+                <element signature="e#638#976#0" expanded="true" />
+                <element signature="e#1821#2954#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="placebo.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="placebo.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="480">
               <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
               <folding>
                 <element signature="e#30#59#0" expanded="true" />
@@ -86,8 +75,20 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state relative-caret-position="236">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="349">
+                <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -106,7 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>std::cout</find>
       <find>readyRea</find>
       <find>new</find>
       <find>newcon</find>
@@ -136,6 +136,7 @@
       <find>debug</find>
       <find>Qt5Core</find>
       <find>ver</find>
+      <find>boost</find>
     </findStrings>
     <replaceStrings>
       <replace>peer</replace>
@@ -167,7 +168,6 @@
       <list>
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Server.hpp" />
         <option value="$PROJECT_DIR$/tests.cpp" />
         <option value="$PROJECT_DIR$/Client.hpp" />
@@ -175,10 +175,11 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/Dep.puml" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/tes.puml" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/com.puml" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Server.cpp" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -192,9 +193,10 @@
     <packageJsonPaths />
   </component>
   <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="720" />
     <option name="y" value="23" />
-    <option name="width" value="1440" />
+    <option name="width" value="720" />
     <option name="height" value="804" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -208,15 +210,6 @@
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="47feb1d3:ProjectViewModuleNode" />
-            </path>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Server" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="Server" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
@@ -253,20 +246,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.placebo">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="All in tests.cpp" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="tests" TEST_PATTERN="initial_state:test" TEST_MODE="PATTERN" />
     <configuration name="connection_vector" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="tests" TEST_METHOD="connection_vector" TEST_MODE="SUITE_TEST" />
     <configuration name="test" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="tests" TEST_METHOD="test" TEST_MODE="SUITE_TEST" />
     <configuration name="test_num_1" type="CMakeBoostTestRunConfigurationType" factoryName="Boost Test" temporary="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="tests" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="tests" TEST_METHOD="test_num_1" TEST_MODE="SUITE_TEST" />
-    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="placebo" EXPLICIT_BUILD_TARGET_NAME="all" />
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="Server" EXPLICIT_BUILD_TARGET_NAME="all" />
     <configuration name="Server" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="Server" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="Server" />
     <configuration name="Server_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="Server_autogen" CONFIG_NAME="Debug" />
-    <configuration name="placebo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="placebo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="placebo" />
-    <configuration name="placebo_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Server" TARGET_NAME="placebo_autogen" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Server" RUN_TARGET_NAME="Server" />
     <list>
       <item itemvalue="Application.Build All" />
-      <item itemvalue="Application.placebo" />
-      <item itemvalue="Application.placebo_autogen" />
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Server_autogen" />
       <item itemvalue="Boost.Test.connection_vector" />
@@ -360,6 +349,9 @@
       <workItem from="1528449985658" duration="878000" />
       <workItem from="1528455554391" duration="3907000" />
       <workItem from="1528629336153" duration="2000" />
+      <workItem from="1528667458739" duration="1095000" />
+      <workItem from="1528669865699" duration="311000" />
+      <workItem from="1528743546286" duration="909000" />
     </task>
     <task id="LOCAL-00001" summary="Including boost directories. Add new exe: tests for testing Sever class components.">
       <created>1527111076834</created>
@@ -473,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528392631945</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Add simple logs.">
+      <created>1528667523266</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1528667523266</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -509,7 +508,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104912000" />
+    <option name="totallyTimeSpent" value="107227000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -521,15 +520,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="804" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="804" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="PlantUML" order="3" weight="0.3297568" />
-      <window_info content_ui="combo" id="Project" order="0" side_tool="true" visible="true" weight="0.18454936" />
+      <window_info content_ui="combo" id="Project" order="0" side_tool="true" weight="0.19098713" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49964765" weight="0.3281471" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48766738" weight="0.38243628" />
       <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4989429" weight="0.3493635" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010571" side_tool="true" weight="0.45120227" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4989429" weight="0.32956153" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4883721" weight="0.39179632" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4883721" visible="true" weight="0.3903819" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24947146" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4989429" weight="0.37340876" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3297568" />
@@ -542,29 +543,28 @@
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32956153" />
-      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48766738" weight="0.38243628" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4989429" weight="0.3493635" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4989429" weight="0.32956153" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.5958702" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4883721" visible="true" weight="0.39321074" />
       <window_info content_ui="combo" id="Project" order="0" side_tool="true" visible="true" weight="0.18240343" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24947146" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49964765" weight="0.3281471" />
-      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4989429" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4883721" visible="true" weight="0.39321074" />
-      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="right" id="PlantUML" order="4" weight="0.3297568" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32956153" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.398017" />
       <window_info anchor="right" x="0" y="0" width="310" height="700" id="Documentation" order="3" side_tool="true" weight="0.3297568" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48766738" weight="0.3838527" />
       <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4989429" weight="0.37340876" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010571" side_tool="true" weight="0.45120227" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4989429" weight="0.3493635" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3297568" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32956153" />
-      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48766738" weight="0.3838527" />
-      <window_info anchor="right" id="PlantUML" order="4" weight="0.3297568" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +601,8 @@
     <MESSAGE value="Fixing handleIncomingData function." />
     <MESSAGE value="README.md update." />
     <MESSAGE value="Updating and improving CMakeLists.txt." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating and improving CMakeLists.txt." />
+    <MESSAGE value="Add simple logs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add simple logs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -777,13 +778,6 @@
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/Server.cbp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -820,21 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="135">
-            <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -856,6 +835,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding>
+            <element signature="e#30#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -866,33 +855,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="87" column="50" lean-forward="true" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
+        <state relative-caret-position="375">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#0#2#0" />
-            <element signature="e#47#67#0" expanded="true" />
-            <element signature="e#261#574#0" expanded="true" />
-            <element signature="e#577#1416#0" expanded="true" />
+            <element signature="e#638#976#0" expanded="true" />
+            <element signature="e#1821#2954#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-          <folding>
-            <element signature="e#30#59#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="349">
+            <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>

@@ -33,3 +33,20 @@ For more information visit [documentation section](documentation).
 
 #### Documentation
 The documentation is available in docs/html folder. Download this folder and open [index.html](docs/html/index.html) file with your browser. 
+
+#### Troubleshooting
+
+**dyld error**
+You might encounter dynamic loader error like this:
+````
+dyld: Library not loaded: libboost_system.dylib
+  Referenced from: /Users/artur/CLionProjects/Server/cmake-build-debug/Server
+  Reason: image not found
+
+````
+It means that your dynamic loader couldn't find dynamic library (image). Simply add path of your library to global variable 
+`DYLD_FALLBACK_LIBRARY_PATH` like so:
+
+`export DYLD_FALLBACK_LIBRARY_PATH=/path/to/liboost_system.dylb`
+
+ 
