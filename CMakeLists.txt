@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11) #version 3.11
+cmake_minimum_required(VERSION 3.10.2) #version 3.10.2
 project(Server)
 
 set(CMAKE_CXX_STANDARD 14)

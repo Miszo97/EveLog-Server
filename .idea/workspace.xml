@@ -13,11 +13,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c471e11-340c-4955-ad00-c6496ce2e3f1" name="Default" comment="Add simple logs.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Request_Response.pb.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Request_Response.pb.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Server.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,25 +49,20 @@
       <file leaf-file-name="Server.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Server.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="72">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
                 <element signature="e#0#2#0" />
-                <element signature="e#638#976#0" expanded="true" />
-                <element signature="e#1821#2954#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="placebo.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-              <folding>
-                <element signature="e#30#59#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -75,18 +70,36 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+            <state relative-caret-position="75">
+              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="arenastring.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/google/protobuf/arenastring.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3285">
+              <caret line="219" selection-start-line="219" selection-end-line="219" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Request_Response.pb.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Request_Response.pb.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8010">
+              <caret line="534" selection-start-line="534" selection-end-line="534" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="349">
-                <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+              <first_editor relative-caret-position="645">
+                <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
               </first_editor>
               <second_editor />
             </state>
@@ -107,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>readyRea</find>
       <find>new</find>
       <find>newcon</find>
       <find>db</find>
@@ -137,6 +149,7 @@
       <find>Qt5Core</find>
       <find>ver</find>
       <find>boost</find>
+      <find>Conne</find>
     </findStrings>
     <replaceStrings>
       <replace>peer</replace>
@@ -160,9 +173,6 @@
       </map>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp" root0="SKIP_INSPECTION" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -175,11 +185,11 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/Dep.puml" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/tes.puml" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/com.puml" />
-        <option value="$PROJECT_DIR$/Server.cpp" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/Server.cpp" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -206,25 +216,7 @@
       <autoscrollToSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-            </path>
-            <path>
-              <item name="Server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-              <item name="Scratches" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -232,7 +224,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -352,6 +344,8 @@
       <workItem from="1528667458739" duration="1095000" />
       <workItem from="1528669865699" duration="311000" />
       <workItem from="1528743546286" duration="909000" />
+      <workItem from="1528750816393" duration="906000" />
+      <workItem from="1528752181635" duration="310000" />
     </task>
     <task id="LOCAL-00001" summary="Including boost directories. Add new exe: tests for testing Sever class components.">
       <created>1527111076834</created>
@@ -508,7 +502,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107227000" />
+    <option name="totallyTimeSpent" value="108443000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -520,29 +514,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="804" extended-state="6" />
-    <editor active="true" />
+    <frame x="67" y="25" width="1853" height="1175" extended-state="6" />
     <layout>
-      <window_info anchor="right" id="PlantUML" order="3" weight="0.3297568" />
+      <window_info anchor="right" id="Key Promoter X" order="3" />
       <window_info content_ui="combo" id="Project" order="0" side_tool="true" weight="0.19098713" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49964765" weight="0.3281471" />
-      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48766738" weight="0.38243628" />
-      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4989429" weight="0.3493635" />
+      <window_info anchor="bottom" id="CMake" order="11" sideWeight="0.4989429" weight="0.34932822" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010571" side_tool="true" weight="0.45120227" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4989429" weight="0.32956153" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4883721" visible="true" weight="0.3903819" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4883721" weight="0.38963532" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24947146" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4989429" weight="0.37340876" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4989429" visible="true" weight="0.59117085" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3297568" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.398017" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.39731285" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.5958702" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="PlantUML" order="3" weight="0.3297568" />
       <window_info anchor="right" x="0" y="0" width="310" height="604" id="Documentation" order="4" side_tool="true" weight="0.3297568" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32956153" />
+      <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.48766738" weight="0.38195777" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4989429" weight="0.32956153" />
@@ -610,13 +604,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Server.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -632,97 +619,19 @@
       </provider>
     </entry>
     <entry file="file:///usr/local/Qt-5.11.0/include/QtCore/qiodevice.h" />
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/__nullptr">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="56" column="30" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/iostream">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/__config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7907">
-          <caret line="442" selection-start-line="442" selection-end-line="442" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/iterator">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="1539" selection-start-line="1539" selection-end-line="1539" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/protobuf-3.5.1/src/google/protobuf/repeated_field.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="550" selection-start-line="550" selection-end-line="550" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/algorithm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="2710" selection-start-line="2710" selection-end-line="2710" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/protobuf-3.5.1/src/google/protobuf/repeated_field.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/message_lite.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="175" selection-start-line="175" selection-end-line="175" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/message.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="187" selection-start-line="187" selection-end-line="187" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/metadata.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/has_bits.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/stubs/atomicops_internals_x86_gcc.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="260" selection-start-line="260" selection-end-line="260" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/stubs/once.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/__nullptr" />
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/iostream" />
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/__config" />
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/iterator" />
+    <entry file="file://$USER_HOME$/Downloads/protobuf-3.5.1/src/google/protobuf/repeated_field.h" />
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/algorithm" />
+    <entry file="file://$USER_HOME$/Downloads/protobuf-3.5.1/src/google/protobuf/repeated_field.cc" />
+    <entry file="file:///usr/local/include/google/protobuf/message_lite.h" />
+    <entry file="file:///usr/local/include/google/protobuf/message.h" />
+    <entry file="file:///usr/local/include/google/protobuf/metadata.h" />
+    <entry file="file:///usr/local/include/google/protobuf/has_bits.h" />
+    <entry file="file:///usr/local/include/google/protobuf/stubs/atomicops_internals_x86_gcc.h" />
+    <entry file="file:///usr/local/include/google/protobuf/stubs/once.h" />
     <entry file="file://$PROJECT_DIR$/Request_Response.pb.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -731,27 +640,8 @@
       </provider>
     </entry>
     <entry file="file:///usr/local/Qt-5.11.0/include/QtCore/qobjectdefs_impl.h" />
-    <entry file="file:///usr/local/include/google/protobuf/arena.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="364" selection-start-line="364" selection-end-line="364" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/google/protobuf/repeated_field.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="1999" selection-start-line="1999" selection-end-line="1999" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Request_Response.pb.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="808" selection-start-line="808" selection-end-line="808" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file:///usr/local/include/google/protobuf/arena.h" />
+    <entry file="file:///usr/local/include/google/protobuf/repeated_field.h" />
     <entry file="file://$PROJECT_DIR$/Request_Response.proto">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -759,20 +649,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="264" column="38" selection-start-line="264" selection-start-column="38" selection-end-line="264" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client.cpp" />
     <entry file="file:///usr/local/Qt-5.11.0/include/QtCore/qdebug.h" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/Server_autogen/mocs_compilation.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Server.dSYM/Contents/Info.plist">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Server.dSYM/Contents/Info.plist" />
     <entry file="file:///usr/local/Qt-5.11.0/lib/cmake/Qt5Core/Qt5CoreMacros.cmake" />
     <entry file="file:///usr/local/Qt-5.11.0/lib/cmake/Qt5Core/Qt5CoreConfig.cmake" />
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake">
@@ -814,13 +696,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.cpp" />
     <entry file="file://$PROJECT_DIR$/Server.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -828,23 +704,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Client.hpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-          <folding>
-            <element signature="e#30#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Client.hpp" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/placebo.cpp" />
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -855,14 +716,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="645">
+            <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/google/protobuf/arenastring.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3285">
+          <caret line="219" selection-start-line="219" selection-end-line="219" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Request_Response.pb.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8010">
+          <caret line="534" selection-start-line="534" selection-end-line="534" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Server.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="72">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#0#2#0" />
-            <element signature="e#638#976#0" expanded="true" />
-            <element signature="e#1821#2954#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -871,28 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="349">
-            <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>

@@ -29,10 +29,6 @@ Server::Server() : handling_connections(false)
     initDB();
     fetchAllEventsFromDBToVector(events);
 
-    std::cout << "events[0].text() returns" << events[0].text() << std::endl;
-
-
-
 
     setUpNetConf();
 
