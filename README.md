@@ -25,7 +25,7 @@ If you are missing any of above libraries install them with your packet manger (
 or build manually following stpes from authors sites.
 
  
-#### Deatils
+#### Details
 
 Currently server supports connections with many clients at the same time. 
 The server internally starts listen on port **4888** and ipv4 127.0.0.1 which is basically _localhost_'.
@@ -33,6 +33,31 @@ For more information visit [documentation section](documentation).
 
 #### Documentation
 The documentation is available in docs/html folder. Download this folder and open [index.html](docs/html/index.html) file with your browser. 
+
+#### Installation 
+
+**Build from source.**
+
+Clone this repository via https protocol.
+~~~
+$> git clone https://github.com/Miszo97/Server.git EveLog-Server
+$> cd EveLog-Server
+~~~
+Run cmake in build directory
+
+~~~
+$> mkdir build && cd build
+$> cmake ../
+~~~
+
+Run generated Makefile
+
+~~~
+$> make
+~~~
+
+
+
 
 #### Troubleshooting
 
