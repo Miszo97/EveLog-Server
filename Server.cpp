@@ -18,11 +18,6 @@ Server::Server() : handling_connections(false)
     initDB();
     fetchAllEventsFromDBToVector(events);
 
-    std::cout << "events[0].text() returns" << events[0].text() << std::endl;
-
-
-
-
     setUpNetConf();
 
 
@@ -63,16 +58,15 @@ void Server::sendEvents(QTcpSocket* peer) {
 
     for (auto&& ev : events) {
         auto event = response.add_events();
-        ev.clear_timestamp();
         *event = ev;
     }
 
+#ifdef DEBUG_MODE
     std::cout<<"The following messages will be sent before serialization: "<<std::endl;
     for (auto&& item : response.events()) {
         std::cout << "Item text: " << item.text()<<std::endl;
-        std::cout << "Item timestamp: " << item.timestamp()<<std::endl;
-        //priority
     }
+#endif
 
     std::cout<<"Serializing a data..."<<std::endl;
 
@@ -327,7 +321,7 @@ void Server::initDB() {
     }
 
     QSqlQuery query;
-    query.exec("CREATE TABLE Events(id UNIQUE, event TEXT, timestamp TEXT, priority INT)");
+    query.exec("CREATE TABLE Events(id UNIQUE, event TEXT)");
 
 }
 
@@ -341,8 +335,7 @@ void Server::addEventToDB(rrepro::Event event) {
     QSqlQuery query;
 
     std::string name = "'"+event.text()+"'";
-    std::string timestamp = "'"+std::to_string(event.timestamp())+"'";
-    std::string q = "INSERT INTO Events (event, timestamp, priority) VALUES ("+name+", "+timestamp+", 1)";
+    std::string q = "INSERT INTO Events (event) VALUES ("+name+")";
 
     const QString& final_query = QString::fromStdString(q);
     query.exec(final_query);
@@ -364,9 +357,6 @@ void Server::fetchAllEventsFromDBToVector(std::vector<rrepro::Event>& vec) {
 
     while (query.next()) {
         QString name = query.value(0).toString();
-        QString timestamp = query.value(1).toString();
-        int priority = query.value(2).toInt();
-        qDebug() << name << priority;
         rrepro::Event event;
         event.set_text(name.toStdString());
         vec.push_back(event);
